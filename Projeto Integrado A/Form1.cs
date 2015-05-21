@@ -554,7 +554,7 @@ namespace Projeto_Integrado_A
 
             for (int i = 0; i < dezenas_int.Length; i++)
             {
-                for (int j = i + 1; j < valores_int_sorteados.Length; j++)
+                for (int j = 0; j < valores_int_sorteados.Length; j++)
                 {
                     if (dezenas_int[i] == valores_int_sorteados[j])
                     {
@@ -563,13 +563,11 @@ namespace Projeto_Integrado_A
                 }
              }
 
-            MessageBox.Show("Numeros sorteados TESTE:  " + dezenas_acertadas); 
-
             MessageBox.Show("Numeros sorteados " + v); 
             double z = endPoint.obterPremioPorAcertos(dezenas_acertadas);
 
-            if (z == -1) MessageBox.Show("Nenhum numero ");
-            else MessageBox.Show("Valor do premio " + z);
+            if (z == -1) MessageBox.Show("Nenhum numero sorteado");
+            else MessageBox.Show("Valor do premio: " + z);
            
 
             TXTconsult.Clear();
