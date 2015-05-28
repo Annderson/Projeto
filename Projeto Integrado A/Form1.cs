@@ -29,29 +29,18 @@ namespace Projeto_Integrado_A
         private void BUTvap_Click(object sender, EventArgs e)
         {
             
-            /*
-             * Recebe os numeros da TXTent e elimina os espaços/traços, index será no final a
-             * quantidade de numeros que usuário deseja apostar.
-             */
-            
+            // Recebe os numeros da TXTent 
+             
             int index;
 
             index = Convert.ToInt32(TXTent.Text.Replace(" ", "").Length);                     
 
             index = index / 2;
 
-            /*
-             * Declaração dos vetores utilizados para armazenar os números que o usuário deseja
-             * apostar e futuramente verificar se as regras do jogo foram cumpridas.
-             */
-
+            // Declaração dos vetores utilizados para armazenar os valores.
+             
             int [] vetnum = new int[index], vetgrup = new int[25];
             string[] vettimes = new string[25];
-            
-            /*
-             * Alocando os números que o usuário digitou no vetor vetnum, organização dos elementos
-             * no vetor e verificação de repetição entre os números escolhidos.
-             */ 
             
             int cv = 0, cs1 = 0, cs2 = 2;                     
             
@@ -81,10 +70,7 @@ namespace Projeto_Integrado_A
                 cv2++;
             }
 
-            /*
-             * Verificação se usuário escolheu números de pelo menos cinco grupos/times diferentes. 
-             */                  
-
+            // Verificação se usuário escolheu números de pelo menos cinco times diferentes. 
             for (cv = 0; cv < index; cv++)
             {
                 if (vetnum[cv] >= 1 && vetnum[cv] <= 4)
@@ -239,19 +225,16 @@ namespace Projeto_Integrado_A
                 
             }
 
-            /*
-             * Verificando o valor da aposta do usuário.
-             */ 
-            
+            // Verificar o valor da aposta do usuário.           
             double vlap = 0;
 
             if (index==10)
                vlap = 5.00;                
-            else if (index==11)
+            else if (index == 11)
                    vlap = 5.75;
-            else if (index==12)
+            else if (index == 12)
                    vlap = 6.50;
-            else if (index==13)
+            else if (index == 13)
                    vlap = 7.25;
             else if (index == 14)
                    vlap = 8.00;
@@ -269,7 +252,6 @@ namespace Projeto_Integrado_A
                    vlap = 27.75;
 
             int contador = 5;
-
             if (rgrup > 5 && index >= 10)
             {
                 while (contador < rgrup)
@@ -279,20 +261,6 @@ namespace Projeto_Integrado_A
                 }      
          
             }
-
-            /*
-            int protocolo;
-            Random prot = new Random();
-
-            protocolo = prot.Next(1000, 9999);
-
-            string aux;
-            aux = "MEGA-TIME\n" + "Protocolo:" + protocolo;
-            aux = aux + "\n "+ TXTent.Text+"\n"+"R$:" + Convert.ToString(vlap);
-
-            //TXTsaida.Text = aux;
-            MessageBox.Show(aux);
-            */
 
             if (validador == 2)
             {
@@ -316,16 +284,10 @@ namespace Projeto_Integrado_A
 
         }
         
-        private void TXTent_TextChanged(object sender, KeyPressEventArgs e)
-        {
-           
-        }
-
         private void TXTent_KeyPress(object sender, KeyPressEventArgs e)
         {
-            /*
-             * Bloqueio que permite somente a digitação de numeros na TXTent
-             */
+            // Bloqueio que permite somente a digitação de numeros na TXTent
+             
  
             if (char.IsLetter(e.KeyChar) || e.KeyChar == ' ')
                 e.Handled = true;
@@ -334,11 +296,8 @@ namespace Projeto_Integrado_A
             else if (char.IsPunctuation(e.KeyChar))
                 e.Handled = true;
             {
-                /*
-                 * Cria uma máscara para que usuário tenha que digitar somente os números que
-                 * deseja apostar sem precisar digitar espaços, virgulas, etc.
-                 */ 
 
+                // Cria uma máscara para dar espaços entre os numeros digitados na TXTent   
                 switch (TXTent.TextLength)
                 {
                     case 0:
@@ -448,10 +407,8 @@ namespace Projeto_Integrado_A
         private void TXTent_TextChanged(object sender, EventArgs e)
         {
                               
-            /*
-             * Se usuário digitar menos de 10 numeros na TXTent botão para verificar/apostar
-             * não será abilitado. Se digitar algo na TXTent habilita o BUTlimpar.
-             */ 
+            // Se na TXTent for digitado menos de 10 BUTvap não habilita.
+            // Qualquer valor digitado, habilita o BUTlimpar.          
 
             if (TXTent.Text.Length > 28)
             {
@@ -479,26 +436,11 @@ namespace Projeto_Integrado_A
             validador = 2;
         }
 
-        private void TXTsaida_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-             
-           
-        }
-
         private void BUTcons_Click(object sender, EventArgs e)
         {
-            /*
-             * Utilização da API fornecida para simular envio de aposta ao orgão regulador (nº
-             * de protocolo e consulta dos numeros de protocolo dos jogos ja feitos).
-             */ 
-            
-            LBLsaida.Text = "";
 
+            // Utilização da API fornecida para simular envio de aposta ao orgão regulador.  
+            LBLsaida.Text = "";
 
             long rprotocolo, protocolo = Convert.ToInt64(TXTconsult.Text.Replace(" ", ""));
             rprotocolo = endPoint.obterQuantidadeDezenasApostadas(protocolo);
@@ -510,13 +452,7 @@ namespace Projeto_Integrado_A
                 BUTcons.Enabled = false;
 
             }
-
-
-            string s = endPoint.obterTodasDezenasApostadas(protocolo);
-            
-
-
-            
+            string s = endPoint.obterTodasDezenasApostadas(protocolo);  
             if (rprotocolo != 0 && s != null)
             {
                 LBLsaida.Text = "MEGA TIME:\n\n" + "Números Apostados:\n" + s + "\n\nQuantidade de Números:\n" + rprotocolo;
@@ -525,7 +461,7 @@ namespace Projeto_Integrado_A
 
                 MessageBox.Show(LBLsaida.Text);
             }
-
+ 
             string x = endPoint.obterNomeTimeSorteado();
             MessageBox.Show("Time sorteado: " + x);
 
@@ -586,11 +522,6 @@ namespace Projeto_Integrado_A
             LBLregras.Text = (" Regras do MEGA TIME:\n\nOs números devem ser digitados com DOIS ALGARISMOS: 01, 07, 93...\nEscolha entre dez e vinte números.\nOs números devem pertencer a pelo menos cinco times diferentes.\n\nVALORES:\n10 números R$5.00.\n11ª a 15ª acrescimo de R$0.75 por número.\n16ª  a 19ª acréscimo de R$3.00 por número.\n20ª acréscimo de R$7.00.\nOBS. Independente da quantidade de dezenas apostadas, caso aposte mais de um número no mesmo time haverá o acrescimo de R$1.25 para cada número a partir do segundo.\nOs valores são CUMULATIVOS.\n");
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void TXTconsult_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsLetter(e.KeyChar) || e.KeyChar == ' ')
@@ -607,15 +538,10 @@ namespace Projeto_Integrado_A
         }
 
         private void LBLsaida_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        { }
         private void LBLregras_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+        { }
+        private void label1_Click(object sender, EventArgs e)
+        { }
     }
 }
