@@ -1,2 +1,0 @@
-NUMEROS=01,02,03,04,05,56,08,07
-TIME=Vasco da Gama
