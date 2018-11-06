@@ -7,10 +7,9 @@
 }
 
 .panel-cadastro {
-    min-width: 600px;
+    max-width: 600px;
     max-height: 700px;
     background-color: white;
     padding: 15px;
-    justify-content: center;
     border-radius: 10px;
 }
