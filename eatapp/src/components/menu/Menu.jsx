@@ -8,13 +8,13 @@ const Menu = props => {
         <div className="body-menu ">
             <ul className="menu-bar ">
                 <li>
-                    <a href="#">Login</a>
+                    <NavLink to="">Login</NavLink>
                 </li>
                 <li>
-                    <a href="#">Cadastro</a>
+                    <NavLink to="cadastro">Cadastro</NavLink>
                 </li>
                 <li>
-                    <a href="#">Sobre</a>
+                    <NavLink to="#">Sobre</NavLink>
                 </li>
             </ul>
         </div>
