@@ -3,6 +3,9 @@ import LoginForm from './login-form/LoginForm';
 import LoginInfo from './login-info/LoginInfo';
 
 export default class Login extends Component {
+    constructor(props){
+        super(props)
+    }
 
     render(){
         return (
@@ -11,7 +14,7 @@ export default class Login extends Component {
                     <LoginInfo />
                 </div>
                 <div className="col-lg-6 col-md-6" >
-                    <LoginForm />
+                    <LoginForm btnLogar={e => console.log('teste btn')} />
                 </div>
             </div>
         )

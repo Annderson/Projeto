@@ -8,7 +8,9 @@ import Home from '../modules/home/Home';
 class App extends Component {
   render() {
     return (
-      <Home />
+      <div>
+         <Home />
+      </div>
     );
   }
 }

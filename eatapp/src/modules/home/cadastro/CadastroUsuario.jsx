@@ -9,7 +9,7 @@ export default class CadastroUsuario extends Component {
                 <form action="" className="panel-cadastro">
                     <h3 className="text-center">Cadastro usuário</h3>
                     <div className="row">
-                        <div className="col-lg-6 col-md-6 col-sm-6">
+                        <div className="col-lg-6 col-md-6 col-sm-6" style={{borderRight: "2px solid black"}}>
                             <div className="form-group group-inputs-cad">
                                 <input type="text" name="name" className="inputs-cad" placeholder="nome completo"/>
                             </div>
@@ -18,6 +18,7 @@ export default class CadastroUsuario extends Component {
                             </div>
                             <div className="form-group group-inputs-cad">
                                 <input type="text" name="name" className="inputs-cad" placeholder="senha"/>
+                                <i id="bnt-eye-cad" class="fa fa-eye"></i>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-6">
