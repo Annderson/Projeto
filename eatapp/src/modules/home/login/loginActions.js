@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { changeLoggout } from './loginActions';
 
 export const changeEmail = (event) => ({
     type: 'EMAIL_CHANGED',
@@ -10,6 +11,11 @@ export const changeSenha = (event) => ({
     payload: event.target.value
 })
 
-export const btnLogar = (username, password) => {
-    
+export const loggout = (value) => ({
+    type: 'LOGGOUT_CHANGED',
+    payload: value
+})
+
+export const btnLogar = (username, password, loggout) => {
+    loggout(loggout)
 }

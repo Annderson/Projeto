@@ -1,0 +1,48 @@
+
+.card-search{
+    width: 80%;
+    background-color: rgb(174,167,161);
+    display: flex;
+    border-radius: 17px;
+    padding: 5px;
+}
+
+.combo-search {
+    position: relative;
+    width: 50%;
+    margin-right: 5px;
+    border-radius: 13px;
+}
+.field-search {
+    width: 100%;
+    border: none;
+    height: 40px;
+    border-radius: 13px;
+    padding-left: 35px;
+}
+.field-search:focus {
+    outline: 0;
+}
+.field-search::placeholder {
+    color: gray;
+    font-size: 13px;
+    font-style: italic;
+}
+.icon-search {
+    position: absolute;
+    left: 7px;
+    margin-top: 8px;
+    font-size: 22px;
+    color: rgb(107, 68, 68);
+}
+.select-search {
+    width: 50%;
+    height: 40px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 13px;
+    background-color: white;
+}
+.select-search:focus {
+    outline: 0;
+}

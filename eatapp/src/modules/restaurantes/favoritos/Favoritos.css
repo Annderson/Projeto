@@ -1,0 +1,18 @@
+.body-favo {
+    background-color: rgb(243,242,243);
+    width: 100%;
+    height: 100vh;
+}
+.block-search-favo {
+    width: 100%;
+    height: 15%;
+    align-items: center;
+    justify-content: center;
+    display: flex; 
+}
+.block-favo {
+    width: 100%;
+    height: 85%;
+    margin: 0;
+    overflow: auto;
+}

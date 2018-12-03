@@ -54,6 +54,8 @@
 .inputs-login {
     width: 100%;
     padding: 0 10px;
+    font-size: 13px;
+    font-style: italic;
 }
 
 .inputs-login::placeholder {
