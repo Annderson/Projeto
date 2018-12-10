@@ -6,11 +6,23 @@ import starF from './../../assets/img/starF.png';
 import starM from './../../assets/img/starM.png';
 import star from './../../assets/img/star.png';
 import mapa from './../../assets/img/mapa.png';
-import favorito from './../../assets/img/favoritoC.png';
-
+import favoritoC from './../../assets/img/favoritoC.png';
+import favoritoV from './../../assets/img/favoritoV.png';
 
 
 const CardLista = props => {
+    let starts = [];
+
+    for(var i = 0; i < 5; i++){
+       if(i<props.nota){
+           starts.push(<img src={starF} className="img-fluid"/>);
+       }
+       else{
+        starts.push(<img src={star} className="img-fluid"/>);
+       }
+    }
+
+     
     return(
         <div className="card-lista">
            <div className="img-card">
@@ -27,15 +39,13 @@ const CardLista = props => {
                     <div className="col-md-3 col-sm-3">
                         <label>Avaliação:</label>
                         <div className="stars">
-                            <img src={starF} className="img-fluid"/>
-                            <img src={starF} className="img-fluid"/>
-                            <img src={starF} className="img-fluid"/>
-                            <img src={starM} className="img-fluid"/>
-                            <img src={star} className="img-fluid"/>
+                            {
+                                starts
+                            }
                         </div>
                         <div className="actions">
                             <img src={mapa} className="img-fluid mapa"/>
-                            <img src={favorito} className="img-fluid mapa"/>
+                            <img src={favoritoC} className="img-fluid mapa"/>
                         </div>
                     </div>
                 </div>

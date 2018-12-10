@@ -10,8 +10,11 @@ class ListaRestaurantes extends Component {
     constructor(props) {
         super(props)
 
+        this.changeSearch = this.changeSearch.bind(this);
+
         this.state = {
-            list: [] 
+            list: [],
+            search: '' 
         }
     }
 
@@ -20,18 +23,29 @@ class ListaRestaurantes extends Component {
              .then(res => this.setState({ list: res.data},()=> console.log(res.data)) )
     }
 
+    changeSearch(e){
+        this.setState({search: e.target.value});
+    }
+
     render(){
+        const sch = this.state.search.toLowerCase();
+
+        const filterList = this.state.list.filter( item=> {
+            return( item.restaurante_nome.toLowerCase().indexOf(sch) >=0 )
+        })
+
         return(
             <div className="body-lista">
                 <div className="block-search">
-                    <CardSearch />
+                    <CardSearch search={this.state.search} changeSearch={this.changeSearch}/>
                 </div>
                 <div className="block-lista row">
                    {
-                       this.state.list.map(item => {
+                        filterList.map(item => {
                           return (
                             <div key={item._id}> <CardLista  nomeRes={item.restaurante_nome} pais={item.pais}
-                                                             especialidade={item.especialidade} cidade={item.cidade}/> 
+                                                             especialidade={item.especialidade} cidade={item.cidade}
+                                                             nota={item.avaliacao[0].nota}/> 
                             </div>
                           )
                        })
