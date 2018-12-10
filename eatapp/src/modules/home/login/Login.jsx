@@ -14,7 +14,7 @@ export default class Login extends Component {
                     <LoginInfo />
                 </div>
                 <div className="col-lg-6 col-md-6" >
-                    <LoginForm btnLogar={e => console.log('teste btn')} />
+                    <LoginForm btnLogar={this.props.logarBtn} />
                 </div>
             </div>
         )

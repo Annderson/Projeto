@@ -11,11 +11,13 @@ export const changeSenha = (event) => ({
     payload: event.target.value
 })
 
-export const loggout = (value) => ({
+export const loggout = (event) => ({
     type: 'LOGGOUT_CHANGED',
-    payload: value
+    payload: event.target.value
 })
 
 export const btnLogar = (username, password, loggout) => {
+    console.log(loggout);
     loggout(loggout)
+
 }

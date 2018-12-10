@@ -21,8 +21,8 @@ const LoginForm = (props) => {
                             value={props.senha} onChange={props.changeSenha}/>
                     <i id="bnt-eye" className="fa fa-eye"></i>
                 </div>
-                <button className="btn btn-success btn-block btn-md"
-                        onClick={() => btnLogar(props.email, props.senha, true)}>
+                <button type="button" className="btn btn-success btn-block btn-md"
+                        onClick={()=>btnLogar(props.email, props.senha, true)}>
                     Entrar
                 </button>
             </form>
@@ -37,3 +37,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(
     { changeEmail, changeSenha }, dispatch
 );
 export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);
+
