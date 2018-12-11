@@ -11,7 +11,12 @@ const CardSearch = props => {
                 <i className="fa fa-search icon-search"></i>
             </div>
             <select className="select-search"> 
-                <option>Teste</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Inglaterra">Inglaterra</option>
+                <option value="usa">USA</option>
+                <option value="Japão">Japão</option>
+                <option value="Fran%E7a">França</option>
+                <option value="Italía">Italía</option>
             </select>
         </div>
     )

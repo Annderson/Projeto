@@ -13,20 +13,20 @@ class Favoritos extends Component {
                 <div className="block-search-favo">
                     <CardSearch />
                 </div>
-                <div className="row block-favo" style={{margin:0}}>
-                   <div className="col-md-3"> 
+                <div className="row block-favo">
+                   <div className="col-md-4"> 
                        <CardFavorito />
                    </div>
-                   <div className="col-md-3"> 
+                   <div className="col-md-4"> 
                        <CardFavorito />
                    </div>
-                   <div className="col-md-3"> 
+                   <div className="col-md-4"> 
                        <CardFavorito />
                    </div>
-                   <div className="col-md-3"> 
+                   <div className="col-md-4"> 
                        <CardFavorito />
                    </div>
-                   <div className="col-md-3"> 
+                   <div className="col-md-4"> 
                        <CardFavorito />
                    </div>
                 </div>

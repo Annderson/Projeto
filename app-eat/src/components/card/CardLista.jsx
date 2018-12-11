@@ -45,7 +45,7 @@ const CardLista = props => {
                         </div>
                         <div className="actions">
                             <img src={mapa} className="img-fluid mapa"/>
-                            <img src={favoritoC} className="img-fluid mapa"/>
+                            <img src={props.favo === 'S'? favoritoC: favoritoV} onClick={props.handleClickFavoritar} className="img-fluid mapa"/>
                         </div>
                     </div>
                 </div>

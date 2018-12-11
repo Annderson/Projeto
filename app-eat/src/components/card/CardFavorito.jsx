@@ -13,10 +13,10 @@ import favorito from './../../assets/img/favoritoC.png';
 const CardFavorito = props => {
     return(
         <div className="card-favorito">
-            <div className="header-card">
-                <div className="img-card-favo">
+            <div className="header-card row">
+                <div className="img-card-favo col-md-8">
                 </div>
-                <div className="card-favo-actions">
+                <div className="card-favo-actions col-md-4">
                 </div>
             </div>
            

@@ -45,7 +45,7 @@ class ListaRestaurantes extends Component {
                           return (
                             <div key={item._id}> <CardLista  nomeRes={item.restaurante_nome} pais={item.pais}
                                                              especialidade={item.especialidade} cidade={item.cidade}
-                                                             nota={item.avaliacao[0].nota}/> 
+                                                             nota={item.avaliacao[0].nota} favo={item.favorito}/> 
                             </div>
                           )
                        })
