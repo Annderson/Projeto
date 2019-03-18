@@ -53,5 +53,19 @@ namespace projeto_lista.Controllers
             return CreatedAtAction(nameof(GetNomeItem), new { id = item.Id}, item);
         }
 
+         // PUT: api/nome
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutNomeItem(long id, NomeItem item) {
+
+            if (id != item.Id) {
+                return BadRequest();
+            }
+
+            _context.Entry(item).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }
