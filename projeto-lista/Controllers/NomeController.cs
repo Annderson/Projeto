@@ -67,5 +67,20 @@ namespace projeto_lista.Controllers
             return NoContent();
         }
 
+        // DELETE: api/nome
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteNomeItem(long id) {
+            var nomeItem = await _context.NomeItems.FindAsync(id);
+
+            if (nomeItem == null) {
+                return NotFound();
+            }
+
+            _context.NomeItems.Remove(nomeItem);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }

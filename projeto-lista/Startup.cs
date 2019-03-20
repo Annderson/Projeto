@@ -11,7 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 using projeto_lista.Entities;
+using projeto_lista.Services;
 
 namespace projeto_lista
 {
@@ -28,7 +30,11 @@ namespace projeto_lista
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NomeContext>(opt => opt.UseInMemoryDatabase("NomeList"));
+            services.AddScoped<LancheService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +49,20 @@ namespace projeto_lista
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            // Ative o middleware para servir o Swagger gerado como um terminal JSON.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // Habilitar o middleware para servir swagger-ui (HTML, JS, CSS, etc.)
+            // specifying the Swagger JSON endpoint.
+            // especificando o terminal JSON do Swagger.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
