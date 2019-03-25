@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using projeto_lista.Entities;
 using projeto_lista.Services;
@@ -19,6 +23,7 @@ namespace projeto_lista
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +36,48 @@ namespace projeto_lista
         {
             services.AddDbContext<NomeContext>(opt => opt.UseInMemoryDatabase("NomeList"));
             services.AddScoped<LancheService>();
+            services.AddScoped<UsuarioService>();
+
+            // especifica o esquema usado para autenticacao do tipo Bearer
+            // e 
+            // define configurações como chave,algoritmo,validade, data expiracao...
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options => {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "anderson.rl.tr@gmail.com",
+                    ValidAudience = "anderson.rl.tr@gmail.com",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
+                };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context => {
+                        Console.WriteLine("Token inválido..:. " + context.Exception.Message);
+                        return Task.CompletedTask;
+                    },
+                    OnTokenValidated = context => {
+                        Console.WriteLine("Toekn válido...: " + context.SecurityToken);
+                        return Task.CompletedTask;
+                    }
+                };
+            });
+
+            services.AddCors (options => {
+                options.AddPolicy ("CorsPolicy",
+                    builder => {
+                        builder
+                            .AllowAnyMethod ()
+                            .AllowAnyHeader ()
+                            .AllowAnyOrigin ()
+                            .AllowCredentials ();
+                    });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
@@ -64,7 +111,9 @@ namespace projeto_lista
                 c.RoutePrefix = string.Empty;
             });
 
+            app.UseCors ("CorsPolicy");
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
