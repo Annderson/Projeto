@@ -51,7 +51,6 @@ namespace projeto_lista.Controllers
             return new ObjectResult(user);
         }
 
-        
         [HttpPost]
         public IActionResult Create([FromBody] Usuario usuario)
         {
@@ -62,7 +61,9 @@ namespace projeto_lista.Controllers
 
             _userService.Add(usuario);
 
-            return CreatedAtRoute("GetUsuario", new { id = usuario.Id }, usuario);
+            Console.WriteLine(usuario);
+
+            return CreatedAtRoute("GetUsuario", new { id = usuario.email }, usuario);
         }
 
         [HttpPut("{id:length(24)}")]

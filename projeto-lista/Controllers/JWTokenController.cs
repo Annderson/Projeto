@@ -24,6 +24,22 @@ namespace projeto_lista.Controllers
             _userService = userService;
         }
 
+        [HttpPost("create")]
+        public IActionResult Create([FromBody] Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                return BadRequest();
+            }
+
+            _userService.Add(usuario);
+
+            Console.WriteLine(usuario);
+
+            return CreatedAtRoute("GetUsuario", new { id = usuario.Id }, usuario);
+        }
+
+
         [AllowAnonymous]
         [HttpPost]
         public IActionResult ResquestToken([FromBody] Usuario request) {
@@ -55,7 +71,7 @@ namespace projeto_lista.Controllers
                 );
                
                 return Ok(
-                    new { user.email, user.senha , token = new JwtSecurityTokenHandler().WriteToken(token)}
+                    new { user.Id, user.email, user.senha , token = new JwtSecurityTokenHandler().WriteToken(token)}
                 );
             }
             return BadRequest("Credenciais invalidas...");
